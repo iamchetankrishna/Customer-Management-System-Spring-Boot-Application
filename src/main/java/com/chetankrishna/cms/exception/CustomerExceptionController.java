@@ -37,4 +37,18 @@ public class CustomerExceptionController {
 						HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now().toString());
 		return new ResponseEntity<>(genericException, null, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(value = NumberFormatException.class)
+	public ResponseEntity<GenericException> numberFormatException(NumberFormatException numberFormatException) {
+		GenericException genericException = new GenericException(numberFormatException.toString(), 
+						HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now().toString());
+		return new ResponseEntity<>(genericException, null, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(value = IllegalArgumentException.class)
+	public ResponseEntity<GenericException> illegalArgumentException(IllegalArgumentException illegalArgumentException) {
+		GenericException genericException = new GenericException(illegalArgumentException.toString(), 
+						HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now().toString());
+		return new ResponseEntity<>(genericException, null, HttpStatus.BAD_REQUEST);
+	}
 }

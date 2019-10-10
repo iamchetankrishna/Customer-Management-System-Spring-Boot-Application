@@ -1,7 +1,19 @@
 package com.chetankrishna.cms.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@Entity
+@JsonInclude(Include.NON_NULL)
+@Table(name = "address_table")
 public class Address {
 
+	@Id
+	private Integer addressId;
 	private String houseNumber;
 	private String streetOne;
 	private String streetTwo;
@@ -15,9 +27,10 @@ public class Address {
 		super();
 	}
 	
-	public Address(String houseNumber, String streetOne, String streetTwo, String city, String state, String country,
+	public Address(Integer addressId, String houseNumber, String streetOne, String streetTwo, String city, String state, String country,
 			String countryCode, String pinCode) {
 		super();
+		this.addressId = addressId;
 		this.houseNumber = houseNumber;
 		this.streetOne = streetOne;
 		this.streetTwo = streetTwo;
@@ -28,6 +41,14 @@ public class Address {
 		this.pinCode = pinCode;
 	}
 	
+	public Integer getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Integer addressId) {
+		this.addressId = addressId;
+	}
+
 	public String getHouseNumber() {
 		return houseNumber;
 	}
@@ -91,11 +112,11 @@ public class Address {
 	public void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Address [houseNumber=" + houseNumber + ", streetOne=" + streetOne + ", streetTwo=" + streetTwo
-				+ ", city=" + city + ", state=" + state + ", country=" + country + ", countryCode=" + countryCode
-				+ ", pinCode=" + pinCode + "]";
+		return "Address [addressId=" + addressId + ", houseNumber=" + houseNumber + ", streetOne=" + streetOne
+				+ ", streetTwo=" + streetTwo + ", city=" + city + ", state=" + state + ", country=" + country
+				+ ", countryCode=" + countryCode + ", pinCode=" + pinCode + "]";
 	}
 }
